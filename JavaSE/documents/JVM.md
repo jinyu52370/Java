@@ -111,7 +111,7 @@
 
 ### 栈 + 堆 + 方法区的交互关系
 
-<img src="F:https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/栈_堆_方法区交互关系.png" alt="栈_堆_方法区交互关系" style="zoom:70%;" />
+<img src="https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/栈_堆_方法区交互关系.png" alt="栈_堆_方法区交互关系" style="zoom:70%;" />
 
 ```java
 Person p1 = new Person();
