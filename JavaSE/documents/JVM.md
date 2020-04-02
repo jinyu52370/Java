@@ -4,19 +4,19 @@
 
 ​		JVM位置：硬件系统 -> 操作系统 -> Java Virtual Machine
 
-<img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/JVM体系结构概览.png" alt="JVM体系结构概览" style="zoom:75%;" />
+<img src="https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/JVM体系结构概览.png" alt="JVM体系结构概览" style="zoom:75%;" />
 
 -----
 
 ## 类装载器ClassLoader
 
-<img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/ClassLoader.png" alt="ClassLoader" style="zoom:60%;" />
+<img src="https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/ClassLoader.png" alt="ClassLoader" style="zoom:60%;" />
 
 ### sun.misc.Launcher
 
 - 是java虚拟机的入口应用
 
-<img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/ClssLoader1.png" alt="ClssLoader1" style="zoom:60%;" />
+<img src="https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/ClssLoader1.png" alt="ClssLoader1" style="zoom:60%;" />
 
 - 虚拟机自带的加载器
   1. 启动类加载器（Bootstrap）C++
@@ -107,11 +107,11 @@
 
 ​		每个方法执行的同时都会创建一个栈帧，用于存储局部变量表、操作数栈、动态链接、方法出口等信息，每一个方法从调用直至执行完毕的过程，就对应着一个栈帧在虚拟机中入栈到出栈的过程。栈的大小和具体JWM的实现有关，通常在256K~756K之间，约等于1Mb左右。
 
-<img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/stack.png" alt="stack" style="zoom:70%;" />
+<img src="https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/stack.png" alt="stack" style="zoom:70%;" />
 
 ### 栈 + 堆 + 方法区的交互关系
 
-<img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/栈_堆_方法区交互关系.png" alt="栈_堆_方法区交互关系" style="zoom:70%;" />
+<img src="https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/栈_堆_方法区交互关系.png" alt="栈_堆_方法区交互关系" style="zoom:70%;" />
 
 ```java
 Person p1 = new Person();
@@ -154,7 +154,7 @@ Old/Tenure养老区
 
 Perm永久区（java7）/元空间（java8）
 
-<img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/堆内存的逻辑划分.png" alt="堆内存的逻辑划分" style="zoom: 55%;" />
+<img src="https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/堆内存的逻辑划分.png" alt="堆内存的逻辑划分" style="zoom: 55%;" />
 
 ### 堆溢出例子：
 
@@ -189,7 +189,7 @@ FGC多次，throws java.lang.OutOfMemoryError:Java heap space 异常。
 
 ### 堆从GC的角度还可以划分为：新生区和养老区
 
-![Heap堆内存物理划分](https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/Heap堆内存物理划分.png)
+![Heap堆内存物理划分](https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/Heap堆内存物理划分.png)
 
 ### MinorGC的过程（复制 -> 清空 -> 互换）
 
@@ -200,7 +200,7 @@ FGC多次，throws java.lang.OutOfMemoryError:Java heap space 异常。
 3.  Survivor和 Survivor From互换
    - 最后， Survivor To和 Survivor From互换，原Survivor To成为下一次GC时的 Survivor From区。部分对象会在From和To区域中复制来复制去如此交换15次（由M参数 MaxTenuringThreshold决定，这个参数默认是15），最终如果还是存活，就存入到老年代
 
-<img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/Sun HotSpot™内存管理.png" alt="Sun HotSpot™内存管理" style="zoom:80%;" />
+<img src="https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/Sun HotSpot™内存管理.png" alt="Sun HotSpot™内存管理" style="zoom:80%;" />
 
 经研究：**不同对象的生命周期不同**，98%的对象是临时对象
 
@@ -239,7 +239,7 @@ JVM Heap（-Xms -Xmx）
 
 -Xms1024m -Xmx1024m -XX:+PrintGCDetails
 
-![java.lang.OutOfMemoryError](https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/java.lang.OutOfMemoryError.png)
+![java.lang.OutOfMemoryError](https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/java.lang.OutOfMemoryError.png)
 
 规律：
 
@@ -254,7 +254,7 @@ JVM在进行GC时，并非每次都对上面三个内存区域一起回收，大
 - Minor GC：只针对新生区的GC，指发生在新生区的垃圾收集动作，因为大多数Java对象存活率都不高，所以Minor GC非常频繁，一般回收速度也很快。
 - Major/Full GC：指发生在养老区的垃圾收集动作，出现了FGC，经常会伴随至少一次的Minor GC（并非绝对）。FGC的速度一般比Minor GC慢上10倍以上（养老区占2/3，扫描更慢）。
 
-<img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/垃圾收集机制.png" alt="垃圾收集机制" style="zoom: 80%;" />
+<img src="https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/垃圾收集机制.png" alt="垃圾收集机制" style="zoom: 80%;" />
 
 ### 四大算法：
 
@@ -290,7 +290,7 @@ JVM在进行GC时，并非每次都对上面三个内存区域一起回收，大
    - **养老区**一般是由标记清除或标记清除和标记整理的混合实现
    - 原理：算法分成标记和清除两个阶段，先标记出要回收的对象，然后统一回收这些对象
 
-   <img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/标记清除.png" alt="标记清除" style="zoom:70%;" />
+   <img src="https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/标记清除.png" alt="标记清除" style="zoom:70%;" />
 
    - 优点：不需要额外空间
    - 缺点：
@@ -341,7 +341,7 @@ volatile是JVM提供的轻量级的同步机制
 
 由于JVM运行程序的实体是线程，而每个线程创建时JVM都会为其创建一个工作内存（有些地方称为栈空间），工作内存是每个线程的**私有**数据区域，而Java内存模型中规定所有变量都存储在主内存，主内存是共享内存区域，所有线程都可以访问，**但线程对变量的操作（读取赋值等）必须在工作内存中进行，首先要将变量从主内存拷贝到的线程自己的工作内存空间，然后对变量进行操作，操作完成后再将变量写回主内存**，不能直接操作主内存中的变量，各个线程中的工作内存中存储着主内存中的**变量副本拷贝**，因此不同的线程间无法访问对方的工作内存，线程间的通信（传值）必须通过主内存来完成，其简要访问过程如下图：
 
-<img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/JMM线程通信.png" alt="JMM线程通信" style="zoom:80%;" />
+<img src="https://github.com/jinyu52370/Java/blob/master/JavaSE/documents/images/JMM线程通信.png" alt="JMM线程通信" style="zoom:80%;" />
 
 - 特征
   - 可见性
