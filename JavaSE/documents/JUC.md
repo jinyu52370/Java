@@ -173,9 +173,9 @@ public ThreadPoolExecutor(int corePoolSize,
 
 ### 线程池底层工作原理
 
-<img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/ThreadPool底层工作原理.png" alt="ThreadPool底层工作原理" style="zoom:80%;" />
+<img src="https://gitee.com/jinyu52370/images/raw/master/images/ThreadPool底层工作原理.png" alt="ThreadPool底层工作原理" style="zoom:80%;" />
 
-<img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/线程池的主要处理流程.png" alt="线程池的主要处理流程" style="zoom:80%;" />
+<img src="https://gitee.com/jinyu52370/images/raw/master/images/线程池的主要处理流程.png" alt="线程池的主要处理流程" style="zoom:80%;" />
 
 - 1、在创建了线程池后，开始等待请求。
 - 2、当调用 execute（）方法添加一个请求任务时，线程池会做出如下判断
@@ -201,4 +201,4 @@ public ThreadPoolExecutor(int corePoolSize,
 
 ## java.util.function
 
-<img src="https://gitee.com/jinyu52370/Java/tree/master/JavaSE/documents/images/java.util.function四大函数式接口.png" alt="java.util.function四大函数式接口" style="zoom: 60%;" />
+<img src="https://gitee.com/jinyu52370/images/raw/master/images/java.util.function四大函数式接口.png" alt="java.util.function四大函数式接口" style="zoom: 60%;" />
