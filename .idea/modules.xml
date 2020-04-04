@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/java.iml" filepath="$PROJECT_DIR$/java.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-algorithm/java-algorithm.iml" filepath="$PROJECT_DIR$/java-algorithm/java-algorithm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-datastructure/java-datastructure.iml" filepath="$PROJECT_DIR$/java-datastructure/java-datastructure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-javase/java-javase.iml" filepath="$PROJECT_DIR$/java-javase/java-javase.iml" />
     </modules>
   </component>
 </project>

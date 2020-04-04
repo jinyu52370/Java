@@ -13,7 +13,10 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Algorithm" target="8" />
+      <module name="java" target="8" />
       <module name="java-algorithm" target="8" />
+      <module name="java-datastructure" target="8" />
+      <module name="java-javase" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
