@@ -6,8 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="JavaSE" />
+        <module name="java-algorithm" />
+        <module name="java-datastructure" />
+        <module name="java-javase" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Algorithm" target="8" />
+      <module name="java-algorithm" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
