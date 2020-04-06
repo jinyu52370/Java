@@ -1,5 +1,6 @@
 package com.jinyu;
 
+import com.jinyu.array.Array;
 import org.junit.Test;
 
 /**

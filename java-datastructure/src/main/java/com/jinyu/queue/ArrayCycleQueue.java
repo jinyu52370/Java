@@ -1,4 +1,4 @@
-package com.jinyu;
+package com.jinyu.queue;
 
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>

@@ -1,4 +1,4 @@
-package com.jinyu;
+package com.jinyu.array;
 
 
 import java.io.BufferedReader;

@@ -1,26 +1,6 @@
-package com.jinyu;
+package com.jinyu.linkedlist;
 
-import java.util.Arrays;
 import java.util.Stack;
-
-class Node{
-    int id;
-    Object[] objects;
-    Node next;
-
-    @Override
-    public String toString() {
-        return "Node{" +
-                "id=" + id +
-                ", objects=" + Arrays.toString(objects) +
-                '}';
-    }
-
-    Node(int id, Object... objects){
-        this.id = id;
-        this.objects = objects;
-    }
-}
 
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>
@@ -30,7 +10,7 @@ public class SingleLinkedList {
     /**
      * 头结点
      */
-    private Node head = new Node(-1);
+    protected Node head = new Node(-1);
 
     public SingleLinkedList(Node head) {
         this.head = head;
@@ -39,21 +19,10 @@ public class SingleLinkedList {
     public SingleLinkedList() {
     }
 
-    public void setHead(Node head) {
-        this.head = head;
-    }
-
-    public Node getHead() {
-        return head;
-    }
-
     /**
-     * 添加节点
-     *
-     * 1.找到当前链表的最后节点
-     * 2.将最后这个节点的next指向新节点
+     * 尾添加
      */
-    public void add(Node node){
+    public void rearAdd(Node node){
         //头结点不能动
         Node temp = head;
         //遍历链表
@@ -94,22 +63,23 @@ public class SingleLinkedList {
     }
 
     /**
-     * 打印链表
+     * 删除
      */
-    public void print(){
+    public void delete(int id){
         if (head.next == null){
             System.out.println("链表为空");
             return;
         }
-        Node temp = head.next;
-        while (true){
-            if (temp == null){
-                break;
-            }
-            System.out.println(temp);
-            temp = temp.next;
-        }
+        Node temp = head;
 
+        while (temp.next.id != id){
+            temp = temp.next;
+            if (temp.next == null){
+                System.out.println("未找到编号为" + id + "的节点");
+                return;
+            }
+        }
+        temp.next = temp.next.next;
     }
 
     /**
@@ -132,23 +102,19 @@ public class SingleLinkedList {
     }
 
     /**
-     * 删除
+     * 打印链表
      */
-    public void delete(int id){
+    public void print(){
         if (head.next == null){
             System.out.println("链表为空");
             return;
         }
-        Node temp = head;
-
-        while (temp.next.id != id){
+        Node temp = head.next;
+        while (temp != null){
+            System.out.println(temp);
             temp = temp.next;
-            if (temp.next == null){
-                System.out.println("未找到编号为" + id + "的节点");
-                return;
-            }
         }
-        temp.next = temp.next.next;
+
     }
 
     /**
@@ -224,16 +190,16 @@ public class SingleLinkedList {
     /**
      * 合并链表且有序
      */
-    public static SingleLinkedList merge(SingleLinkedList list1, SingleLinkedList list2){
-        Node node1 = list1.getHead();
-        Node node2 = list2.getHead();
+    public static Node merge(SingleLinkedList list1, SingleLinkedList list2){
+        Node node1 = list1.head;
+        Node node2 = list2.head;
         if (node1 == null){
             System.out.println("node1链表为空");
-            return new SingleLinkedList();
+            return null;
         }
         if (node2 == null){
             System.out.println("node2链表为空");
-            return new SingleLinkedList();
+            return null;
         }
 
         int[] ids = new int[list1.length() + list2.length()];
@@ -281,6 +247,6 @@ public class SingleLinkedList {
                 temp = temp.next;
             }
         }
-        return new SingleLinkedList(result);
+        return result;
     }
 }
