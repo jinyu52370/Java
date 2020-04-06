@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/java-algorithm/java-algorithm.iml" filepath="$PROJECT_DIR$/java-algorithm/java-algorithm.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-datastructure/java-datastructure.iml" filepath="$PROJECT_DIR$/java-datastructure/java-datastructure.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-javase/java-javase.iml" filepath="$PROJECT_DIR$/java-javase/java-javase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-unfiled/java-unfiled.iml" filepath="$PROJECT_DIR$/java-unfiled/java-unfiled.iml" />
     </modules>
   </component>
 </project>
