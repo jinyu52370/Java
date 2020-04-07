@@ -2,6 +2,8 @@ package com.jinyu.linkedlist;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>
  * @date 2020/4/4 23:54
@@ -135,13 +137,19 @@ public class LinkedListTest {
         Node noded = new Node(4, "d");
         Node nodee = new Node(5, "e");
 
-        CycleLinkedList list = new CycleLinkedList(nodea);
+        CycleLinkedList list = new CycleLinkedList();
 
+        list.add(nodea);
         list.add(nodeb);
         list.add(nodec);
         list.add(noded);
         list.add(nodee);
 
         list.print();
+    }
+
+    @Test
+    public void cycleLinkedListTest2(){
+        CycleLinkedList.joseph(1, 3, 5);
     }
 }
