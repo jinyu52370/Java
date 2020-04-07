@@ -6,7 +6,7 @@ import com.jinyu.Stack;
  * @author <a href="jinyu52370@163.com">JJJ</a>
  * @date 2020/4/7 12:41
  */
-public class StackUseLinkedList implements Stack {
+public class StackUseLinkedList<T> implements Stack<T> {
     private Node head = new Node(-1);
 
     public StackUseLinkedList(){
@@ -24,7 +24,7 @@ public class StackUseLinkedList implements Stack {
     }
 
     @Override
-    public void push(Object[] objects){
+    public void push(T t){
 //        if (isFull()){
 //            return;
 //        }
@@ -34,21 +34,22 @@ public class StackUseLinkedList implements Stack {
         }
         int idNum = temp.id + 1;
 
-        Node node = new Node(idNum, objects);
+        Node node = new Node(idNum, t);
         Node curr = head;
         node.next = curr.next;
         curr.next = node;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public Object[] pop(){
+    public T pop(){
         if (isEmpty()){
             return null;
         }
         Node curr = head;
-        Object[] objects = curr.next.objects;
+        T t = (T)curr.next.objects[0];
         curr.next = curr.next.next;
-        return objects;
+        return t;
     }
 
     @Override
@@ -57,18 +58,17 @@ public class StackUseLinkedList implements Stack {
         System.out.print("[");
         while (curr.next != null){
             curr = curr.next;
-            System.out.print("[");
-            for (int j = 0; j < curr.objects.length; j++) {
-                System.out.print(curr.objects[j]);
-                if (j != curr.objects.length){
-                    System.out.print(", ");
-                }
-            }
-            System.out.print("]");
+            System.out.println(curr.objects[0]);
             if (curr.next != null){
                 System.out.print(", ");
             }
         }
         System.out.println("]");
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public T peek() {
+        return (T) head.next.objects[0];
     }
 }

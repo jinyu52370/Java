@@ -1,6 +1,7 @@
 package com.jinyu.impl;
 
 import com.jinyu.Stack;
+import com.jinyu.util.Stacks;
 import org.junit.Test;
 
 /**
@@ -30,5 +31,16 @@ public class StackTest {
 
         stack.pop();
         stack.print();
+    }
+
+    @Test
+    public void calculatorTest1(){
+        System.out.println(Stacks.calculator("500+1000-2*2+8/4+36/18-666/333+678/678"));
+    }
+
+    @Test
+    public void test(){
+        String str = "123456";
+        System.out.println(str.substring(5, 6));
     }
 }

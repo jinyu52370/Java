@@ -1,13 +1,15 @@
 package com.jinyu;
 
-public interface Stack {
+public interface Stack<T> {
     boolean isFull();
 
     boolean isEmpty();
 
-    void push(Object[] objects);
+    void push(T t);
 
-    Object[] pop();
+    T pop();
 
     void print();
+
+    T peek();
 }

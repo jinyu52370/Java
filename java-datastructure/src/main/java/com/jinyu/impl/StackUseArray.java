@@ -2,20 +2,18 @@ package com.jinyu.impl;
 
 import com.jinyu.Stack;
 
-import java.util.Arrays;
-
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>
  * @date 2020/4/7 12:19
  */
-public class StackUseArray implements Stack {
+public class StackUseArray<T> implements Stack<T> {
     private int maxSize;
-    private Object[][] stack;
+    private Object[] stack;
     private int top = -1;
 
     public StackUseArray(int maxSize){
         this.maxSize = maxSize;
-        stack = new Object[maxSize][];
+        stack = new Object[maxSize];
     }
 
     @Override
@@ -29,20 +27,21 @@ public class StackUseArray implements Stack {
     }
 
     @Override
-    public void push(Object[] objects){
+    public void push(T t){
         if (isFull()){
             return;
         }
         top++;
-        stack[top] = objects;
+        stack[top] = t;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public Object[] pop(){
+    public T pop(){
         if (isEmpty()){
             return null;
         }
-        Object[] temp = stack[top];
+        T temp = (T)stack[top];
         top--;
         return temp;
     }
@@ -51,18 +50,17 @@ public class StackUseArray implements Stack {
     public void print(){
         System.out.print("[");
         for (int i = top; i > -1; i--) {
-            System.out.print("[");
-            for (int j = 0; j < stack[i].length; j++) {
-                System.out.print(stack[i][j]);
-                if (j != stack[i].length){
-                    System.out.print(", ");
-                }
-            }
-            System.out.print("]");
+            System.out.println(stack[i]);
             if (i != 0){
                 System.out.print(", ");
             }
         }
         System.out.println("]");
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public T peek() {
+        return (T)stack[top];
     }
 }

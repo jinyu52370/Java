@@ -22,7 +22,7 @@ public enum Season {
     private final String name;
     private final String describe;
 
-    private Season(String name, String describe){
+    Season(String name, String describe){
         this.name = name;
         this.describe = describe;
     }

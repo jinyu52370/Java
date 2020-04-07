@@ -1,8 +1,6 @@
-package com.jinyu;
-
+package com.jinyu.util;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.file.Files;

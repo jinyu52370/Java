@@ -1,6 +1,6 @@
 package com.jinyu.impl;
 
-import com.jinyu.Arrays;
+import com.jinyu.util.Arrays;
 import org.junit.Test;
 
 /**
