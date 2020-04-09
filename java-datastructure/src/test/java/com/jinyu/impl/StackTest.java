@@ -36,11 +36,16 @@ public class StackTest {
     @Test
     public void calculatorTest1(){
         System.out.println(Stacks.calculator("500+1000-2*2+8/4+36/18-666/333+678/678"));
+//        System.out.println(Stacks.calculator("7-6-1-8"));
     }
 
     @Test
-    public void test(){
-        String str = "123456";
-        System.out.println(str.substring(5, 6));
+    public void polandNotationTest1(){
+        System.out.println(Stacks.polandNotation("1+((2+3)*4)-5"));
+    }
+
+    @Test
+    public void polandNotationTest2(){
+        System.out.println(Stacks.infix2Suffix("1+((2+3)*4)-5"));
     }
 }
