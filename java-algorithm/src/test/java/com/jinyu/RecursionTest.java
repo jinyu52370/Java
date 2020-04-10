@@ -32,4 +32,9 @@ public class RecursionTest {
         int endI = 6, endJ = 5;
         Recursion.maze(map,startI , startJ, endI, endJ);
     }
+
+    @Test
+    public void test2(){
+        Recursion.queen8(0);
+    }
 }

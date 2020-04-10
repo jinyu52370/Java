@@ -1,6 +1,8 @@
 package com.jinyu;
 
 
+import java.util.Arrays;
+
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>
  * @date 2020/4/9 14:15
@@ -60,15 +62,18 @@ public class Recursion {
         return false;
     }
 
-    private int queenNumMax = 8;
-    private int[] result = new int[queenNumMax];
+    private static int queenNumMax = 8;
+    private static int[] result = new int[queenNumMax];
+    private static int totalResult = 0;
+    private static int totalIsClash = 0;
 
     /**
      * 判断冲突
      * @param n 第几个皇后
      * @return 是否有冲突
      */
-    private boolean isClash(int n){
+    private static boolean isClash(int n){
+        totalIsClash++;
         for (int i = 0; i < n; i++) {
             /*
              * result[i] == result[n]
@@ -77,13 +82,43 @@ public class Recursion {
              *      判断是否在对角线上： 斜率为1时，x1 - x2 = y1 - y2
              */
             if (result[i] == result[n] || Math.abs(n - i) == Math.abs(result[n] - result[i])){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
-    public static void queen8(){
-        //todo
+    /**
+     * 放皇后
+     */
+    private static void putQueen(int n){
+        //放置第9个皇后时即8个皇后均放置完毕
+        if (n == queenNumMax){
+            totalResult++;
+            System.out.print(totalResult + "\t[");
+            for (int element : result){
+                System.out.print(element);
+                if (element != result[result.length - 1]){
+                    System.out.print(", ");
+                }
+            }
+            System.out.println("]");
+            return;
+        }
+
+        for (int i = 0; i < queenNumMax; i++) {
+            //每次从第一列开始放
+            result[n] = i;
+            //若不冲突则开始放下一行
+            if (isClash(n)){
+                putQueen(n + 1);
+            }
+            //若冲突则回到 result[n] = i; 即放第二列并检测冲突，以此类推
+        }
+    }
+
+    public static void queen8(int n){
+        putQueen(n);
+        System.out.println("共进行冲突检测" + totalIsClash + "次");
     }
 }
