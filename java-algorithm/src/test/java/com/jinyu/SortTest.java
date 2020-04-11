@@ -15,20 +15,27 @@ import java.util.stream.Collectors;
 public class SortTest {
     @Test
     public void data8WTest(){
-        int[] data = new int[80000];
-        for (int i = 0; i < 80000; i++) {
-            data[i] = (int) (Math.random() * 80000);
+        int max = 8 * 10000;
+        int[] data = new int[max];
+        for (int i = 0; i < max; i++) {
+            data[i] = (int) (Math.random() * max);
         }
         Timestamp t1 = new Timestamp(System.currentTimeMillis());
 
-        //10.88s
+        //11.032s
 //        Sort.bubbleSort(data);
-        //1.647s
+        //1.713s
 //        Sort.selectionSort(data);
-        //0.612s
+        //0.622s
 //        Sort.insertionSort(data);
-        //6.074s
-        Sort.shellSort(data);
+        //6.923s
+//        Sort.shellSortSwap(data);
+        //0.022s
+//        Sort.shellSortMove(data);
+        //0.02s
+//        Sort.quickSort(data);
+        //0.019s
+        Sort.mergeSort(data);
 
         System.out.println((new Timestamp(System.currentTimeMillis()).getTime() - t1.getTime())/1000.0 + "s");
 
@@ -40,9 +47,13 @@ public class SortTest {
 //        List list = Arrays.stream(Sort.bubbleSort(new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1}))
 //                .boxed()
 //                .collect(Collectors.toList());
-//        System.out.println(Arrays.toString(Sort.bubbleSort(new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1})));
-//        System.out.println(Arrays.toString(Sort.selectionSort(new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1})));
-//        System.out.println(Arrays.toString(Sort.insertionSort(new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1})));
-        System.out.println(Arrays.toString(Sort.shellSort(new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1})));
+        int[] array = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+//        System.out.println(Arrays.toString(Sort.bubbleSort(array)));
+//        System.out.println(Arrays.toString(Sort.selectionSort(array)));
+//        System.out.println(Arrays.toString(Sort.insertionSort(array)));
+//        System.out.println(Arrays.toString(Sort.shellSortSwap(array)));
+//        System.out.println(Arrays.toString(Sort.shellSortMove(array)));
+//        System.out.println(Arrays.toString(Sort.quickSort(new int[]{8, 5, 3, 6, 2, 1, 7, 4, 9})));
+        System.out.println(Arrays.toString(Sort.mergeSort(array)));
     }
 }
