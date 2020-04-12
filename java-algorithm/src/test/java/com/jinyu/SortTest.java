@@ -35,7 +35,9 @@ public class SortTest {
         //0.02s
 //        Sort.quickSort(data);
         //0.019s
-        Sort.mergeSort(data);
+//        Sort.mergeSort(data);
+        //0.079s
+        Sort.radixSort(data);
 
         System.out.println((new Timestamp(System.currentTimeMillis()).getTime() - t1.getTime())/1000.0 + "s");
 
@@ -54,6 +56,8 @@ public class SortTest {
 //        System.out.println(Arrays.toString(Sort.shellSortSwap(array)));
 //        System.out.println(Arrays.toString(Sort.shellSortMove(array)));
 //        System.out.println(Arrays.toString(Sort.quickSort(new int[]{8, 5, 3, 6, 2, 1, 7, 4, 9})));
-        System.out.println(Arrays.toString(Sort.mergeSort(array)));
+//        System.out.println(Arrays.toString(Sort.mergeSort(array)));
+        System.out.println(Arrays.toString(Sort.radixSort(new int[]{53, 3, 542, 748, 14, 214})));
+
     }
 }

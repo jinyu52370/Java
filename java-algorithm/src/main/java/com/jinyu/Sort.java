@@ -10,7 +10,7 @@ public class Sort {
     /**
      * 冒泡排序
      */
-    public static int[] bubbleSort(int[] array){
+    public static int[] bubbleSort(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             boolean isOrderly = true;
             for (int j = 0; j < array.length - 1 - i; j++) {
@@ -22,7 +22,7 @@ public class Sort {
                 }
             }
             //若在一趟排序中均未发生交换，则表示已经有序
-            if (isOrderly){
+            if (isOrderly) {
                 break;
             }
         }
@@ -32,11 +32,11 @@ public class Sort {
     /**
      * 选择排序
      */
-    public static int[] selectionSort(int[] array){
+    public static int[] selectionSort(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < array.length - i; j++) {
-                if (array[minIndex] > array[j]){
+                if (array[minIndex] > array[j]) {
                     minIndex = j;
                 }
             }
@@ -68,19 +68,19 @@ public class Sort {
 
     /**
      * 插入排序
-     *  i：无序表首元素下标
-     *  j：有序表末元素下标，在无序表首元素的前一个
-     *  value：记录无序表首元素
-     *  array[j]：有序表末元素
-     *
-     *  若无序表首元素小于有序表末元素则有序表末元素后移（占据无序表首元素位置，已记录在value不会丢失），
-     *  有序表末元素下标前移，直到待插入元素小于无序表首元素，则无序表首元素插入j的后面
+     * i：无序表首元素下标
+     * j：有序表末元素下标，在无序表首元素的前一个
+     * value：记录无序表首元素
+     * array[j]：有序表末元素
+     * <p>
+     * 若无序表首元素小于有序表末元素则有序表末元素后移（占据无序表首元素位置，已记录在value不会丢失），
+     * 有序表末元素下标前移，直到待插入元素小于无序表首元素，则无序表首元素插入j的后面
      */
-    public static int[] insertionSort(int[] array){
+    public static int[] insertionSort(int[] array) {
         for (int i = 1; i < array.length; i++) {
             int value = array[i];
             int j;
-            for (j = i - 1; j >= 0 && value < array[j]; j--){
+            for (j = i - 1; j >= 0 && value < array[j]; j--) {
                 array[j + 1] = array[j];
             }
             /*
@@ -119,8 +119,8 @@ public class Sort {
     /**
      * 希尔排序 移动法
      */
-    public static int[] shellSortMove(int[] array){
-        for (int stepLength = array.length/2; stepLength > 0; stepLength /= 2) {
+    public static int[] shellSortMove(int[] array) {
+        for (int stepLength = array.length / 2; stepLength > 0; stepLength /= 2) {
             for (int i = stepLength; i < array.length; i++) {
                 int value = array[i];
                 int j;
@@ -143,11 +143,11 @@ public class Sort {
         int l = left, r = right;
         while (l < r) {
             //找到大于等于pivot的数的下标
-            while (array[l] < pivot){
+            while (array[l] < pivot) {
                 l++;
             }
             //找到小于等于pivot的数的下标
-            while (array[r] > pivot){
+            while (array[r] > pivot) {
                 r--;
             }
             //l == r 则表示l和r均等于pivot的下标，左侧 < pivot < 右侧
@@ -170,11 +170,11 @@ public class Sort {
              *
              *  若交换后不对r左移，则下一轮循环中l和r都不会移动，然后再次交换，以至无限
              */
-            if(array[l] == pivot) {
+            if (array[l] == pivot) {
                 r--;
             }
             //同理
-            if(array[r] == pivot) {
+            if (array[r] == pivot) {
                 l++;
             }
         }
@@ -201,9 +201,16 @@ public class Sort {
         return array;
     }
 
-
+    /**
+     * 归并排序-归并
+     *
+     * @param array     待排数组
+     * @param minIndex1 左数组的首下标
+     * @param endIndex2 右数组的尾下标
+     * @param temp      临时数组
+     */
     private static void mergeSortMergeAndJoin(int[] array, int minIndex1, int endIndex2, int[] temp) {
-        if (minIndex1 < endIndex2){
+        if (minIndex1 < endIndex2) {
             int endIndex1 = (minIndex1 + endIndex2) / 2;
             //向左递归
             mergeSortMergeAndJoin(array, minIndex1, endIndex1, temp);
@@ -214,11 +221,20 @@ public class Sort {
         }
     }
 
+    /**
+     * 归并排序-排序
+     *
+     * @param array     待排数组
+     * @param minIndex1 左数组的首下标
+     * @param endIndex1 左数组的尾下标
+     * @param endIndex2 右数组的尾下标
+     * @param temp      临时数组
+     */
     private static void mergeSortExecute(int[] array, int minIndex1, int endIndex1, int endIndex2, int[] temp) {
         int i = minIndex1, j = endIndex1 + 1, tempIndex = 0;
         //1. 两个数组按顺序填充到temp数组，直到两个数组有其中一个填充完毕
         while (i <= endIndex1 && j <= endIndex2) {
-            if (array[i] <= array[j]){
+            if (array[i] <= array[j]) {
                 temp[tempIndex] = array[i];
                 tempIndex++;
                 i++;
@@ -230,12 +246,12 @@ public class Sort {
 
         }
         //2. 将有剩余元素的数组按下标递增(因为已有序)填充到temp数组
-        while (i <= endIndex1){
+        while (i <= endIndex1) {
             temp[tempIndex] = array[i];
             tempIndex++;
             i++;
         }
-        while (j <= endIndex2){
+        while (j <= endIndex2) {
             temp[tempIndex] = array[j];
             tempIndex++;
             j++;
@@ -243,7 +259,7 @@ public class Sort {
         //3. 将temp的元素拷贝到array
         tempIndex = 0;
         int minIndex1Temp = minIndex1;
-        while (minIndex1Temp <= endIndex2){
+        while (minIndex1Temp <= endIndex2) {
             array[minIndex1Temp] = temp[tempIndex];
             minIndex1Temp++;
             tempIndex++;
@@ -251,8 +267,60 @@ public class Sort {
 
     }
 
-    public static int[] mergeSort(int[] array){
+    /**
+     * 归并排序
+     *
+     * @param array 待排数组
+     * @return
+     */
+    public static int[] mergeSort(int[] array) {
         mergeSortMergeAndJoin(array, 0, array.length - 1, new int[array.length]);
+        return array;
+    }
+
+    /**
+     * 基数排序
+     */
+    public static int[] radixSort(int[] array) {
+        //桶的数量
+        final int bucketTotal = 10;
+        //定义桶
+        int[][] bucket = new int[bucketTotal][array.length];
+        //定义每个桶存放数据的个数
+        int[] bucketElementCounts = new int[bucketTotal];
+
+        //找到array中最大的数
+        int max = array[0];
+        for(int element : array){
+            if (element > max){
+                max = element;
+            }
+        }
+        //得到max的位数
+        int maxLength = (max + "").length();
+        //根据max的位数得到array的每一个元素需要除几次10
+        for (int i = 0, power = 1; i < maxLength; i++, power *= 10) {
+            //将array中的元素放入桶中
+            for (int j = 0; j < array.length; j++) {
+                int index = (array[j] / power % 10);
+                bucket[index][bucketElementCounts[index]++] = array[j];
+            }
+            //将桶中的元素放回array中
+            int arrayIndex = 0;
+            for (int j = 0; j < bucketTotal; j++) {
+                int bucketElementIndex = 0;
+                while (bucketElementCounts[j] != 0) {
+                    array[arrayIndex] = bucket[j][bucketElementIndex];
+                    //第i个桶的数据量减1
+                    bucketElementCounts[j]--;
+                    //第i个桶的索引后移
+                    bucketElementIndex++;
+                    arrayIndex++;
+                }
+            }
+            //桶元素个数清零
+            Arrays.stream(bucketElementCounts).forEach(element -> element = 0);
+        }
         return array;
     }
 }
