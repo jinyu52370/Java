@@ -25,4 +25,9 @@ public class SearchTest {
         }
         System.out.println(Search.interpolationSearch(array, 66));
     }
+
+    @Test
+    public void fibonacciSearchTest(){
+        System.out.println(Search.fibonacciSearch(new int[]{1, 8, 10, 89, 1000, 1234}, 89));
+    }
 }

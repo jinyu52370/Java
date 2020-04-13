@@ -1,6 +1,7 @@
 package com.jinyu;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,7 +36,7 @@ public class Search {
      * @param value 待查值
      * @param left 数组左下标
      * @param right 数组右下标
-     * @return 待查值的下标
+     * @return 待查值的下标集合
      */
     private static List binarySearchExecute(int[] array, int value, int left, int right) {
         System.out.println("正在查找");
@@ -90,7 +91,7 @@ public class Search {
      * @param value 待查值
      * @param left 数组左下标
      * @param right 数组右下标
-     * @return 待查值的下标
+     * @return 待查值的下标集合
      */
     private static List interpolationSearchExecute(int[] array, int value, int left, int right) {
         System.out.println("正在查找");
@@ -135,7 +136,68 @@ public class Search {
      * @param value 待查值
      * @return 待查值的下标集合
      */
-    public static List interpolationSearch(int[] array, int value){
+    public static List interpolationSearch(int[] array, int value) {
         return interpolationSearchExecute(array, value, 0, array.length - 1);
+    }
+
+    /**
+     * 斐波那契查找
+     * @param array 待查数组，数组必须有序
+     * @param value 待查值
+     * @return 待查值的下标集合
+     */
+    public static List fibonacciSearch(int[] array, int value){
+        if (value < array[0] || value > array[array.length - 1]){
+            return null;
+        }
+
+        ArrayList<Integer> resultIndex = new ArrayList<>();
+        int left = 0;
+        int right = array.length - 1;
+        int k = 0;
+
+        int[] fib = new int[40];
+        fib[0] = 1;
+        fib[1] = 1;
+        for (int i = 2; i < fib.length; i++) {
+            fib[i] = fib[i - 1] + fib[i - 2];
+        }
+
+        //将array扩充到斐波那契的长度
+        while (right > fib[k] - 1){
+            k++;
+        }
+        int[] temp = Arrays.copyOf(array, fib[k]);
+        for (int i = right + 1; i < temp.length; i++) {
+            temp[i] = array[right];
+        }
+
+        //找value
+        int mid;
+        while (left <= right){
+            mid = left + fib[k - 1] - 1;
+            if (value < temp[mid]){
+                right = mid - 1;
+                //fib[k] = (左)fib[k - 1] + (右)fib[k - 2]
+                //fib[k - 1]
+                k--;
+                continue;
+            }
+            if (value > temp[mid]){
+                left = mid + 1;
+                //fib[k - 2]
+                k -= 2;
+                continue;
+            }
+            if (value == temp[mid]){
+                if (mid <= right) {
+                    resultIndex.add(mid);
+                } else {
+                    resultIndex.add(right);
+                }
+                return resultIndex;
+            }
+        }
+        return null;
     }
 }
