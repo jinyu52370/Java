@@ -1,7 +1,5 @@
 package com.jinyu.impl;
 
-import com.jinyu.impl.QueueUseArrayCycle;
-import com.jinyu.impl.QueueUseArray;
 import org.junit.Test;
 
 
