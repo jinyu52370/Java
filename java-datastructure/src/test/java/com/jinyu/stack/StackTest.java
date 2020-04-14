@@ -1,6 +1,8 @@
-package com.jinyu.impl;
+package com.jinyu.stack;
 
-import com.jinyu.Stack;
+import com.jinyu.stack.Stack;
+import com.jinyu.stack.StackUseArray;
+import com.jinyu.stack.StackUseLinkedList;
 import com.jinyu.util.Stacks;
 import org.junit.Test;
 

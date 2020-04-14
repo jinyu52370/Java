@@ -1,4 +1,4 @@
-package com.jinyu.impl;
+package com.jinyu;
 
 import com.jinyu.util.Arrays;
 import org.junit.Test;

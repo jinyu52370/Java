@@ -1,6 +1,6 @@
 package com.jinyu.util;
 
-import com.jinyu.impl.StackUseLinkedList;
+import com.jinyu.stack.StackUseLinkedList;
 
 import java.util.*;
 import java.util.Arrays;

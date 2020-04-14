@@ -1,6 +1,4 @@
-package com.jinyu.impl;
-
-import com.jinyu.Stack;
+package com.jinyu.stack;
 
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>

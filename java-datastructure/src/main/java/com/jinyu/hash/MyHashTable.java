@@ -1,7 +1,7 @@
 package com.jinyu.hash;
 
 
-import java.util.Arrays;
+import com.jinyu.entity.User;
 
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>

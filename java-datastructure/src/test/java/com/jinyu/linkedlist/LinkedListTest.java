@@ -1,5 +1,9 @@
-package com.jinyu.impl;
+package com.jinyu.linkedlist;
 
+import com.jinyu.entity.Node;
+import com.jinyu.linkedlist.LinkedListCycle;
+import com.jinyu.linkedlist.LinkedListDouble;
+import com.jinyu.linkedlist.LinkedListSingle;
 import org.junit.Test;
 
 /**

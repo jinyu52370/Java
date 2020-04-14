@@ -1,6 +1,6 @@
-package com.jinyu.impl;
+package com.jinyu.stack;
 
-import com.jinyu.Stack;
+import com.jinyu.entity.Node;
 
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>

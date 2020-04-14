@@ -1,6 +1,4 @@
-package com.jinyu.impl;
-
-import com.jinyu.Queue;
+package com.jinyu.queue;
 
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>

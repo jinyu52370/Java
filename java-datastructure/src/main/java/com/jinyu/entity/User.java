@@ -1,4 +1,4 @@
-package com.jinyu.hash;
+package com.jinyu.entity;
 
 import lombok.Data;
 import lombok.ToString;

@@ -1,6 +1,6 @@
 package com.jinyu.hash;
 
-import lombok.AllArgsConstructor;
+import com.jinyu.entity.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

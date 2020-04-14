@@ -1,5 +1,7 @@
 package com.jinyu.hash;
 
+import com.jinyu.entity.User;
+import com.jinyu.hash.MyHashTable;
 import org.junit.Test;
 
 /**

@@ -1,4 +1,4 @@
-package com.jinyu.impl;
+package com.jinyu.entity;
 
 import java.util.Arrays;
 
@@ -7,10 +7,10 @@ import java.util.Arrays;
  * @date 2020/4/7 14:16
  */
 public class Node {
-    int id;
-    Object[] objects;
-    Node next = null;
-    Node pre = null;
+    public int id;
+    public Object[] objects;
+    public Node next = null;
+    public Node pre = null;
 
     @Override
     public String toString() {
