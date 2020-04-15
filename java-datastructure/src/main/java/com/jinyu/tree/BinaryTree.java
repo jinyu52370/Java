@@ -48,7 +48,7 @@ public class BinaryTree {
     }
 
     private TreeNode preOrderQueryExecute(TreeNode node, TreeNode queryRoot){
-        System.out.println("正在查找...");
+        System.out.println("正在查找...当前节点id为：" + queryRoot.id);
         if (node.id == queryRoot.id){
             return queryRoot;
         }
@@ -65,13 +65,13 @@ public class BinaryTree {
     }
 
     private TreeNode infixOrderQueryExecute(TreeNode node, TreeNode queryRoot){
-        System.out.println("正在查找...");
         if (queryRoot.left != null) {
             TreeNode resultNode = preOrderQueryExecute(node, queryRoot.left);
             if (resultNode != null){
                 return resultNode;
             }
         }
+        System.out.println("正在查找...当前节点id为：" + queryRoot.id);
         if (node.id == queryRoot.id){
             return queryRoot;
         }
@@ -82,7 +82,6 @@ public class BinaryTree {
     }
 
     private TreeNode postOrderQueryExecute(TreeNode node, TreeNode queryRoot) {
-        System.out.println("正在查找...");
         TreeNode resultNode = null;
         if (queryRoot.left != null) {
             resultNode = preOrderQueryExecute(node, queryRoot.left);
@@ -96,6 +95,7 @@ public class BinaryTree {
                 return resultNode;
             }
         }
+        System.out.println("正在查找...当前节点id为：" + queryRoot.id);
         if (node.id == queryRoot.id){
             return queryRoot;
         }

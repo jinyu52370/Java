@@ -33,8 +33,10 @@ public class TreeTest {
 //        System.out.println();
 //        tree.postOrder();
 
-        System.out.println(tree.preOrderQuery(1) + "\n\n");
-        System.out.println(tree.infixOrderQuery(1) + "\n\n");
-        System.out.println(tree.postOrderQuery(1));
+        int id = 5;
+
+        System.out.println(tree.preOrderQuery(id) + "\n\n");
+        System.out.println(tree.infixOrderQuery(id) + "\n\n");
+        System.out.println(tree.postOrderQuery(id));
     }
 }
