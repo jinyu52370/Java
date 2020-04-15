@@ -47,59 +47,85 @@ public class BinaryTree {
         System.out.println(node);
     }
 
-    private TreeNode preOrderQueryExecute(TreeNode node, TreeNode queryRoot){
+    private TreeNode preOrderQueryExecute(int id, TreeNode queryRoot){
         System.out.println("正在查找...当前节点id为：" + queryRoot.id);
-        if (node.id == queryRoot.id){
+        if (id == queryRoot.id){
             return queryRoot;
         }
         if (queryRoot.left != null) {
-            TreeNode resultNode = preOrderQueryExecute(node, queryRoot.left);
+            TreeNode resultNode = preOrderQueryExecute(id, queryRoot.left);
             if (resultNode != null){
                 return resultNode;
             }
         }
         if (queryRoot.right != null) {
-            return preOrderQueryExecute(node, queryRoot.right);
+            return preOrderQueryExecute(id, queryRoot.right);
         }
         return null;
     }
 
-    private TreeNode infixOrderQueryExecute(TreeNode node, TreeNode queryRoot){
+    private TreeNode infixOrderQueryExecute(int id, TreeNode queryRoot){
         if (queryRoot.left != null) {
-            TreeNode resultNode = preOrderQueryExecute(node, queryRoot.left);
+            TreeNode resultNode = preOrderQueryExecute(id, queryRoot.left);
             if (resultNode != null){
                 return resultNode;
             }
         }
         System.out.println("正在查找...当前节点id为：" + queryRoot.id);
-        if (node.id == queryRoot.id){
+        if (id == queryRoot.id){
             return queryRoot;
         }
         if (queryRoot.right != null) {
-            return infixOrderQueryExecute(node, queryRoot.right);
+            return infixOrderQueryExecute(id, queryRoot.right);
         }
         return null;
     }
 
-    private TreeNode postOrderQueryExecute(TreeNode node, TreeNode queryRoot) {
+    private TreeNode postOrderQueryExecute(int id, TreeNode queryRoot) {
         TreeNode resultNode = null;
         if (queryRoot.left != null) {
-            resultNode = preOrderQueryExecute(node, queryRoot.left);
+            resultNode = preOrderQueryExecute(id, queryRoot.left);
             if (resultNode != null){
                 return resultNode;
             }
         }
         if (queryRoot.right != null) {
-            resultNode = postOrderQueryExecute(node, queryRoot.right);
+            resultNode = postOrderQueryExecute(id, queryRoot.right);
             if (resultNode != null){
                 return resultNode;
             }
         }
         System.out.println("正在查找...当前节点id为：" + queryRoot.id);
-        if (node.id == queryRoot.id){
+        if (id == queryRoot.id){
             return queryRoot;
         }
         return null;
+    }
+
+    private boolean deleteExecute(int id, TreeNode queryRoot){
+        if (queryRoot.left != null && id == queryRoot.left.id){
+//            System.out.println("已删除节点" + queryRoot.left);
+            queryRoot.left = null;
+            return true;
+        }
+        if (queryRoot.right != null && id == queryRoot.right.id){
+//            System.out.println("已删除节点" + queryRoot.right);
+            queryRoot.right = null;
+            return true;
+        }
+        if (queryRoot.left != null){
+            boolean result = deleteExecute(id, queryRoot.left);
+            if (result){
+                return result;
+            }
+        }
+        if (queryRoot.right != null){
+            boolean result = deleteExecute(id, queryRoot.right);
+            if (result){
+                return result;
+            }
+        }
+        return false;
     }
     //endregion
 
@@ -158,15 +184,44 @@ public class BinaryTree {
         postOrderExecute(root);
     }
 
+    /**
+     * 前序查找
+     * @param id 需查找节点的id
+     * @return 找到的节点
+     */
     public TreeNode preOrderQuery(int id){
-        return preOrderQueryExecute(new TreeNode(id), root);
+        return preOrderQueryExecute(id, root);
     }
 
+    /**
+     * 中序查找
+     * @param id 需查找节点的id
+     * @return 找到的节点
+     */
     public TreeNode infixOrderQuery(int id){
-        return infixOrderQueryExecute(new TreeNode(id), root);
+        return infixOrderQueryExecute(id, root);
     }
 
+    /**
+     * 后序查找
+     * @param id 需查找节点的id
+     * @return 找到的节点
+     */
     public TreeNode postOrderQuery(int id){
-        return postOrderQueryExecute(new TreeNode(id), root);
+        return postOrderQueryExecute(id, root);
+    }
+
+    /**
+     * 删除节点
+     * @param id 需删除节点的id
+     * @return 是否删除
+     */
+    public boolean delete(int id){
+        if (id == root.id) {
+//            System.out.println("已删除节点" + root);
+            root = null;
+            return true;
+        }
+        return deleteExecute(id, root);
     }
 }

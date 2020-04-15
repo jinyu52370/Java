@@ -8,9 +8,7 @@ import org.junit.Test;
  * @date 2020/1/14 16:48
  */
 public class TreeTest {
-    @Test
-    public void binaryTreeTest(){
-        //region init
+    private BinaryTree init(){
         TreeNode node1 = new TreeNode(1,"宋江");
         TreeNode node2 = new TreeNode(2, "吴用");
         TreeNode node3 = new TreeNode(3,"卢俊义");
@@ -23,20 +21,37 @@ public class TreeTest {
 
         node1.left = node2;
         node1.right = node3;
-        node3.left = node4;
-        node3.right = node5;
-        //endregion
+        node3.left = node5;
+        node3.right = node4;
 
-//        tree.preOrder();
-//        System.out.println();
-//        tree.infixOrder();
-//        System.out.println();
-//        tree.postOrder();
+        return tree;
+    }
+    private BinaryTree tree = init();
 
+
+    @Test
+    public void binaryTreeTest1(){
+        tree.preOrder();
+        System.out.println();
+        tree.infixOrder();
+        System.out.println();
+        tree.postOrder();
+    }
+
+    @Test
+    public void binaryTreeTest2() {
         int id = 5;
 
         System.out.println(tree.preOrderQuery(id) + "\n\n");
         System.out.println(tree.infixOrderQuery(id) + "\n\n");
         System.out.println(tree.postOrderQuery(id));
     }
+
+    @Test
+    public void binaryTreeTest3() {
+        System.out.println(tree.delete(2));
+
+        tree.preOrder();
+    }
+
 }
