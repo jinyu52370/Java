@@ -17,56 +17,56 @@ public class BinaryTree {
     //region private
     protected TreeNode root;
 
-    private void preOrderExecute(TreeNode node){
+    private void preOrder(TreeNode node){
         System.out.println(node);
         if (node.left != null){
-            preOrderExecute(node.left);
+            preOrder(node.left);
         }
         if (node.right != null){
-            preOrderExecute(node.right);
+            preOrder(node.right);
         }
     }
 
-    private void infixOrderExecute(TreeNode node){
+    private void infixOrder(TreeNode node){
         if (node.left != null){
-            infixOrderExecute(node.left);
+            infixOrder(node.left);
         }
         System.out.println(node);
         if (node.right != null){
-            infixOrderExecute(node.right);
+            infixOrder(node.right);
         }
     }
 
-    private void postOrderExecute(TreeNode node){
+    private void postOrder(TreeNode node){
         if (node.left != null){
-            postOrderExecute(node.left);
+            postOrder(node.left);
         }
         if (node.right != null){
-            postOrderExecute(node.right);
+            postOrder(node.right);
         }
         System.out.println(node);
     }
 
-    private TreeNode preOrderQueryExecute(int id, TreeNode queryRoot){
+    private TreeNode preOrderQuery(int id, TreeNode queryRoot){
         System.out.println("正在查找...当前节点id为：" + queryRoot.id);
         if (id == queryRoot.id){
             return queryRoot;
         }
         if (queryRoot.left != null) {
-            TreeNode resultNode = preOrderQueryExecute(id, queryRoot.left);
+            TreeNode resultNode = preOrderQuery(id, queryRoot.left);
             if (resultNode != null){
                 return resultNode;
             }
         }
         if (queryRoot.right != null) {
-            return preOrderQueryExecute(id, queryRoot.right);
+            return preOrderQuery(id, queryRoot.right);
         }
         return null;
     }
 
-    private TreeNode infixOrderQueryExecute(int id, TreeNode queryRoot){
+    private TreeNode infixOrderQuery(int id, TreeNode queryRoot){
         if (queryRoot.left != null) {
-            TreeNode resultNode = preOrderQueryExecute(id, queryRoot.left);
+            TreeNode resultNode = preOrderQuery(id, queryRoot.left);
             if (resultNode != null){
                 return resultNode;
             }
@@ -76,21 +76,21 @@ public class BinaryTree {
             return queryRoot;
         }
         if (queryRoot.right != null) {
-            return infixOrderQueryExecute(id, queryRoot.right);
+            return infixOrderQuery(id, queryRoot.right);
         }
         return null;
     }
 
-    private TreeNode postOrderQueryExecute(int id, TreeNode queryRoot) {
+    private TreeNode postOrderQuery(int id, TreeNode queryRoot) {
         TreeNode resultNode = null;
         if (queryRoot.left != null) {
-            resultNode = preOrderQueryExecute(id, queryRoot.left);
+            resultNode = preOrderQuery(id, queryRoot.left);
             if (resultNode != null){
                 return resultNode;
             }
         }
         if (queryRoot.right != null) {
-            resultNode = postOrderQueryExecute(id, queryRoot.right);
+            resultNode = postOrderQuery(id, queryRoot.right);
             if (resultNode != null){
                 return resultNode;
             }
@@ -102,7 +102,7 @@ public class BinaryTree {
         return null;
     }
 
-    private boolean deleteExecute(int id, TreeNode queryRoot){
+    private boolean delete(int id, TreeNode queryRoot){
         if (queryRoot.left != null && id == queryRoot.left.id){
 //            System.out.println("已删除节点" + queryRoot.left);
             queryRoot.left = null;
@@ -114,13 +114,13 @@ public class BinaryTree {
             return true;
         }
         if (queryRoot.left != null){
-            boolean result = deleteExecute(id, queryRoot.left);
+            boolean result = delete(id, queryRoot.left);
             if (result){
                 return result;
             }
         }
         if (queryRoot.right != null){
-            boolean result = deleteExecute(id, queryRoot.right);
+            boolean result = delete(id, queryRoot.right);
             if (result){
                 return result;
             }
@@ -159,7 +159,7 @@ public class BinaryTree {
             System.out.println("树根节点为空");
             return;
         }
-        preOrderExecute(root);
+        preOrder(root);
     }
 
     /**
@@ -170,7 +170,7 @@ public class BinaryTree {
             System.out.println("树根节点为空");
             return;
         }
-        infixOrderExecute(root);
+        infixOrder(root);
     }
 
     /**
@@ -181,7 +181,7 @@ public class BinaryTree {
             System.out.println("树根节点为空");
             return;
         }
-        postOrderExecute(root);
+        postOrder(root);
     }
 
     /**
@@ -190,7 +190,11 @@ public class BinaryTree {
      * @return 找到的节点
      */
     public TreeNode preOrderQuery(int id){
-        return preOrderQueryExecute(id, root);
+        if (root == null){
+            System.out.println("树根节点为空");
+            return null;
+        }
+        return preOrderQuery(id, root);
     }
 
     /**
@@ -199,7 +203,11 @@ public class BinaryTree {
      * @return 找到的节点
      */
     public TreeNode infixOrderQuery(int id){
-        return infixOrderQueryExecute(id, root);
+        if (root == null) {
+            System.out.println("树根节点为空");
+            return null;
+        }
+        return infixOrderQuery(id, root);
     }
 
     /**
@@ -208,7 +216,11 @@ public class BinaryTree {
      * @return 找到的节点
      */
     public TreeNode postOrderQuery(int id){
-        return postOrderQueryExecute(id, root);
+        if (root == null) {
+            System.out.println("树根节点为空");
+            return null;
+        }
+        return postOrderQuery(id, root);
     }
 
     /**
@@ -217,11 +229,15 @@ public class BinaryTree {
      * @return 是否删除
      */
     public boolean delete(int id){
+        if (root == null) {
+            System.out.println("树根节点为空");
+            return false;
+        }
         if (id == root.id) {
 //            System.out.println("已删除节点" + root);
             root = null;
             return true;
         }
-        return deleteExecute(id, root);
+        return delete(id, root);
     }
 }

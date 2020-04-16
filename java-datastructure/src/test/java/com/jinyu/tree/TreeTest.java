@@ -54,4 +54,38 @@ public class TreeTest {
         tree.preOrder();
     }
 
+    @Test
+    public void arrBinaryTreeTest(){
+        ArrBinaryTree tree = new ArrBinaryTree(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+        tree.preOrder();
+    }
+
+    @Test
+    public void threadedBinaryTreeTest(){
+        //region private
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node3 = new TreeNode(3);
+        TreeNode node6 = new TreeNode(6);
+        TreeNode node8 = new TreeNode(8);
+        TreeNode node10 = new TreeNode(10);
+        TreeNode node14 = new TreeNode(14);
+
+        node1.left = node3;
+        node1.right = node6;
+        node3.left = node8;
+        node3.right = node10;
+        node6.left = node14;
+
+        ThreadedBinaryTree tree = new ThreadedBinaryTree();
+
+        tree.setRoot(node1);
+        //endregion
+
+        tree.infixThreadedNode();
+//
+//        System.out.println(node10.left + "\t" + node10.leftType);
+//        System.out.println(node10.right + "\t" + node10.rightType);
+
+        tree.queryAll();
+    }
 }
