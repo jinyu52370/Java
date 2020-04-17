@@ -3,17 +3,19 @@ package com.jinyu.tree;
 import com.jinyu.entity.TreeNode;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>
  * @date 2020/1/14 16:48
  */
 public class TreeTest {
-    private BinaryTree init(){
-        TreeNode node1 = new TreeNode(1,"宋江");
+    private BinaryTree init() {
+        TreeNode node1 = new TreeNode(1, "宋江");
         TreeNode node2 = new TreeNode(2, "吴用");
-        TreeNode node3 = new TreeNode(3,"卢俊义");
-        TreeNode node4 = new TreeNode(4,"李逵");
-        TreeNode node5 = new TreeNode(5,"林冲");
+        TreeNode node3 = new TreeNode(3, "卢俊义");
+        TreeNode node4 = new TreeNode(4, "李逵");
+        TreeNode node5 = new TreeNode(5, "林冲");
 
         BinaryTree tree = new BinaryTree();
 
@@ -26,11 +28,12 @@ public class TreeTest {
 
         return tree;
     }
+
     private BinaryTree tree = init();
 
 
     @Test
-    public void binaryTreeTest1(){
+    public void binaryTreeTest1() {
         tree.preOrder();
         System.out.println();
         tree.infixOrder();
@@ -55,13 +58,13 @@ public class TreeTest {
     }
 
     @Test
-    public void arrBinaryTreeTest(){
+    public void arrBinaryTreeTest() {
         ArrBinaryTree tree = new ArrBinaryTree(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
         tree.preOrder();
     }
 
     @Test
-    public void threadedBinaryTreeTest(){
+    public void threadedBinaryTreeTest() {
         //region private
         TreeNode node1 = new TreeNode(1);
         TreeNode node3 = new TreeNode(3);
@@ -87,5 +90,20 @@ public class TreeTest {
 //        System.out.println(node10.right + "\t" + node10.rightType);
 
         tree.queryAll();
+    }
+
+    @Test
+    public void heapSortTest() {
+        int[] sort = HeapSort.sort(new int[]{8, 7, 6, 5, 4, 3, 2, 1, -1});
+        System.out.println(Arrays.toString(sort));
+    }
+
+    @Test
+    public void huffmanTreeTest(){
+        int[] array = {13, 7, 8, 3, 29, 6, 1};
+        HuffmanTree huffmanTree = new HuffmanTree();
+        huffmanTree.create(array);
+
+        huffmanTree.preOrder();
     }
 }

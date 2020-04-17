@@ -1,5 +1,7 @@
 package com.jinyu;
 
+import com.jinyu.tree.HeapSort;
+
 import java.util.Arrays;
 
 /**
@@ -323,4 +325,12 @@ public class Sort {
         }
         return array;
     }
+
+
+    /**
+     * 堆排序
+     * in HeapSort class
+     */
+    @Deprecated
+    public static HeapSort heapSort;
 }

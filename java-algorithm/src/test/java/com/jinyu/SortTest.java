@@ -1,5 +1,6 @@
 package com.jinyu;
 
+import com.jinyu.tree.HeapSort;
 import org.junit.Test;
 
 import java.sql.Timestamp;
@@ -37,7 +38,9 @@ public class SortTest {
         //0.019s
 //        Sort.mergeSort(data);
         //0.079s
-        Sort.radixSort(data);
+//        Sort.radixSort(data);
+        //0.02s
+        HeapSort.sort(data);
 
         System.out.println((new Timestamp(System.currentTimeMillis()).getTime() - t1.getTime())/1000.0 + "s");
 
