@@ -4,6 +4,9 @@ import com.jinyu.entity.TreeNode;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>
@@ -99,11 +102,35 @@ public class TreeTest {
     }
 
     @Test
-    public void huffmanTreeTest(){
-        int[] array = {13, 7, 8, 3, 29, 6, 1};
+    public void huffmanTreeTest1(){
+        List<TreeNode> treeNodes = Arrays.asList(
+                new TreeNode(13),
+                new TreeNode(7),
+                new TreeNode(8),
+                new TreeNode(3),
+                new TreeNode(29),
+                new TreeNode(6),
+                new TreeNode(1)
+        );
         HuffmanTree huffmanTree = new HuffmanTree();
-        huffmanTree.create(array);
+        huffmanTree.create(treeNodes);
 
         huffmanTree.preOrder();
+    }
+
+    @Test
+    public void huffmanTreeTest2() {
+        String str = "this is a huffman tree la la la";
+
+        HuffmanTree huffmanTree = new HuffmanTree();
+        huffmanTree.createByStr(str);
+
+//        huffmanTree.preOrder();
+//        huffmanTree.codeMap();
+//        System.out.println(huffmanTree.codeMap());
+//        System.out.println(Arrays.toString(huffmanTree.compress()));
+        huffmanTree.compress();
+//        huffmanTree.write("F:/_IOFiles/huffman.txt");
+        huffmanTree.read("F:/_IOFiles/huffman.txt");
     }
 }
