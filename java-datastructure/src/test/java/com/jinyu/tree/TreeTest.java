@@ -120,17 +120,15 @@ public class TreeTest {
 
     @Test
     public void huffmanTreeTest2() {
-        String str = "this is a huffman tree la la la";
+        String str = "this is a huffman tree la la la, but it has some bugs :(";
 
-        HuffmanTree huffmanTree = new HuffmanTree();
-        huffmanTree.createByStr(str);
+        HuffmanTree huffmanTree = new HuffmanTree(str);
 
 //        huffmanTree.preOrder();
-//        huffmanTree.codeMap();
 //        System.out.println(huffmanTree.codeMap());
 //        System.out.println(Arrays.toString(huffmanTree.compress()));
-        huffmanTree.compress();
-//        huffmanTree.write("F:/_IOFiles/huffman.txt");
-        huffmanTree.read("F:/_IOFiles/huffman.txt");
+//        System.out.println(huffmanTree.allCodes());
+        huffmanTree.write("F:/_IOFiles/","huffman");
+        System.out.println(HuffmanTree.read("F:/_IOFiles/","huffman"));
     }
 }
