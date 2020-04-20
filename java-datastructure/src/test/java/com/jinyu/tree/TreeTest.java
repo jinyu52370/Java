@@ -126,9 +126,16 @@ public class TreeTest {
 
 //        huffmanTree.preOrder();
 //        System.out.println(huffmanTree.codeMap());
-//        System.out.println(Arrays.toString(huffmanTree.compress()));
-//        System.out.println(huffmanTree.allCodes());
-        huffmanTree.write("F:/_IOFiles/","huffman");
-        System.out.println(HuffmanTree.read("F:/_IOFiles/","huffman"));
+//        System.out.println(Arrays.toString(huffmanTree.huffmanBytes()));
+//        System.out.println(huffmanTree.huffmanCodes());
+        huffmanTree.write("F:/_IOFiles/", "huffman");
+        System.out.println(huffmanTree.read("F:/_IOFiles/", "huffman"));
+    }
+
+    @Test
+    public void huffmanTreeTest3(){
+        HuffmanTree tree = new HuffmanTree();
+        tree.compressFile("F:/_IOFiles/wdnmd.bmp", "F:/_IOFiles/wdnmd.zip");
+        tree.unCompressFile("F:/_IOFiles/wdnmd.zip", "F:/wdnmd.bmp");
     }
 }

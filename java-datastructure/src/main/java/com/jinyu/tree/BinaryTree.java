@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import sun.reflect.generics.tree.Tree;
 
+import java.io.Serializable;
+
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>
  * @date 2020/4/14 16:14
@@ -13,7 +15,7 @@ import sun.reflect.generics.tree.Tree;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BinaryTree {
+public class BinaryTree implements Serializable {
     //region private
     protected TreeNode root;
 
