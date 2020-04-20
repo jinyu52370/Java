@@ -22,7 +22,7 @@ public class TreeTest {
 
         BinaryTree tree = new BinaryTree();
 
-        tree.add(node1);
+        tree.root = node1;
 
         node1.left = node2;
         node1.right = node3;
@@ -137,5 +137,15 @@ public class TreeTest {
         HuffmanTree tree = new HuffmanTree();
         tree.compressFile("F:/_IOFiles/wdnmd.bmp", "F:/_IOFiles/wdnmd.zip");
         tree.unCompressFile("F:/_IOFiles/wdnmd.zip", "F:/wdnmd.bmp");
+    }
+
+    @Test
+    public void BinarySortTreeTest(){
+        int[] array = {7, 3, 10, 12, 5, 1, 9};
+        BinarySortTree tree = new BinarySortTree(array);
+
+        tree.add(new int[]{100,200,300});
+
+        tree.preOrder();
     }
 }

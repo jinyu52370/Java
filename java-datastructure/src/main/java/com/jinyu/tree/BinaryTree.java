@@ -131,28 +131,6 @@ public class BinaryTree implements Serializable {
     }
     //endregion
 
-    //todo
-    public void add(TreeNode node){
-        if (root == null){
-            root = node;
-            return;
-        }
-        TreeNode temp = root;
-        if (node.id < temp.id) {
-            while (temp.left != null) {
-                temp = temp.left;
-            }
-            temp.left = node;
-            return;
-        }
-        if (node.id > temp.id) {
-            while (temp.right != null) {
-                temp = temp.right;
-            }
-            temp.right = node;
-        }
-    }
-
     /**
      * 前序遍历
      */
