@@ -140,7 +140,7 @@ public class TreeTest {
     }
 
     @Test
-    public void BinarySortTreeTest() {
+    public void binarySortTreeTest() {
         int[] array = {7, 3, 10, 12, 5, 1, 9};
         BinarySortTree tree = new BinarySortTree(array);
 
@@ -153,5 +153,14 @@ public class TreeTest {
         System.out.println("\n\n" + tree.delete(3) + "\n\n");
 
         tree.preOrder();
+    }
+
+    @Test
+    public void AVLTest(){
+        int[] array = {4, 3, 6, 5, 7, 8};
+        SelfBalancingBinarySearchTree tree = new SelfBalancingBinarySearchTree(array);
+        System.out.println(tree.treeDepth());
+        System.out.println(tree.leftSubTreeDepth());
+        System.out.println(tree.rightSubTreeDepth());
     }
 }

@@ -6,6 +6,8 @@ import sun.reflect.generics.tree.Tree;
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>
  * @date 2020/4/20 11:27
+ *
+ * BST 二叉排序(搜索)树
  */
 public class BinarySortTree extends BinaryTree {
     //region private
