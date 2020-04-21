@@ -102,7 +102,7 @@ public class TreeTest {
     }
 
     @Test
-    public void huffmanTreeTest1(){
+    public void huffmanTreeTest1() {
         List<TreeNode> treeNodes = Arrays.asList(
                 new TreeNode(13),
                 new TreeNode(7),
@@ -133,18 +133,24 @@ public class TreeTest {
     }
 
     @Test
-    public void huffmanTreeTest3(){
+    public void huffmanTreeTest3() {
         HuffmanTree tree = new HuffmanTree();
         tree.compressFile("F:/_IOFiles/wdnmd.bmp", "F:/_IOFiles/wdnmd.zip");
         tree.unCompressFile("F:/_IOFiles/wdnmd.zip", "F:/wdnmd.bmp");
     }
 
     @Test
-    public void BinarySortTreeTest(){
+    public void BinarySortTreeTest() {
         int[] array = {7, 3, 10, 12, 5, 1, 9};
         BinarySortTree tree = new BinarySortTree(array);
 
-        tree.add(new int[]{100,200,300});
+        tree.add(new int[]{100, 200, 300});
+
+        tree.preOrder();
+//        System.out.println(tree.query(10));
+//        System.out.println(tree.queryParent(10));
+
+        System.out.println("\n\n" + tree.delete(3) + "\n\n");
 
         tree.preOrder();
     }
