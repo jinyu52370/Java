@@ -157,10 +157,14 @@ public class TreeTest {
 
     @Test
     public void AVLTest(){
-        int[] array = {4, 3, 6, 5, 7, 8};
+//        int[] array = {4, 3, 6, 5, 7, 8};
+//        int[] array = {10,12,8,9,7,6};
+        int[] array = {10,11,7,6,8,9};
         SelfBalancingBinarySearchTree tree = new SelfBalancingBinarySearchTree(array);
-        System.out.println(tree.treeDepth());
-        System.out.println(tree.leftSubTreeDepth());
-        System.out.println(tree.rightSubTreeDepth());
+        System.out.println(tree.rootTreeDepth());
+        System.out.println(tree.rootLeftSubTreeDepth());
+        System.out.println(tree.rootRightSubTreeDepth());
+
+        tree.preOrder();
     }
 }

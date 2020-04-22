@@ -77,7 +77,7 @@ public class BinarySortTree extends BinaryTree {
 
     public void add(int[] array) {
         for (int a : array) {
-            create(new TreeNode(a), root);
+            add(a);
         }
     }
 
