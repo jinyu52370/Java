@@ -70,7 +70,7 @@ public class MiddleOperation {
     @Test
     public void test2(){
         /*
-         * map(Function f)--接收一个函数作为参数，将元素转换为其他形式或提取信息，该函数会被应用到每个元素上，并将其映射为一个新的流
+         * graph(Function f)--接收一个函数作为参数，将元素转换为其他形式或提取信息，该函数会被应用到每个元素上，并将其映射为一个新的流
          *      类比于list里的add()
          *      小写->大写
          */
