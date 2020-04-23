@@ -31,14 +31,16 @@ public class Search {
     }
 
     /**
-     * 二分查找执行
+     * 二分查找 递归
+     *
      * @param array 待查数组，数组必须有序
      * @param value 待查值
-     * @param left 数组左下标
-     * @param right 数组右下标
      * @return 待查值的下标集合
      */
-    private static List binarySearchExecute(int[] array, int value, int left, int right) {
+    public static List binarySearch(int[] array, int value){
+        return binarySearch(array, value, 0, array.length - 1);
+    }
+    private static List binarySearch(int[] array, int value, int left, int right) {
         System.out.println("正在查找");
         if (value < array[0] || value > array[array.length - 1] || left > right) {
             return null;
@@ -47,11 +49,11 @@ public class Search {
         int mid = (left + right) / 2;
         //待查值大于array[mid]时向右递归
         if (value > array[mid]) {
-            return binarySearchExecute(array, value, mid + 1, right);
+            return binarySearch(array, value, mid + 1, right);
         }
         //待查值小于array[mid]时向左递归
         if (value < array[mid]) {
-            return binarySearchExecute(array, value, left, mid - 1);
+            return binarySearch(array, value, left, mid - 1);
         }
         //待查值等于array[mid]时分别向mid的左右进行扫描，以找到等于array[mid]的值的下标
         ArrayList<Integer> resultIndex = new ArrayList<>();
@@ -75,25 +77,66 @@ public class Search {
     }
 
     /**
-     * 二分查找
+     * 二分查找 迭代
      *
      * @param array 待查数组，数组必须有序
      * @param value 待查值
      * @return 待查值的下标集合
      */
-    public static List binarySearch(int[] array, int value){
-        return binarySearchExecute(array, value, 0, array.length - 1);
+    public static List<Integer> binarySearchFroIteration(int[] array, int value){
+        if (value < array[0] || value > array[array.length - 1]) {
+            return null;
+        }
+        int left = 0;
+        int right = array.length - 1;
+        int midIndex;
+
+        while (left <= right){
+            midIndex = (left + right) / 2;
+            System.out.println("正在查找");
+            //找到
+            if (value == array[midIndex]){
+                ArrayList<Integer> resultList = new ArrayList<>();
+                //向左查询是否还有与array[midIndex]相等的元素
+                for (int i = midIndex - 1; i >= 0; i--) {
+                    if (array[i] != value){
+                        break;
+                    }
+                    resultList.add(i);
+                }
+                //添加midIndex
+                resultList.add(midIndex);
+                //向右查询是否还有与array[midIndex]相等的元素
+                for (int i = midIndex + 1; i < array.length; i++) {
+                    if (array[i] != value){
+                        break;
+                    }
+                    resultList.add(i);
+                }
+                return resultList;
+            }
+            //向左查询
+            if (value > array[midIndex]){
+                left = midIndex + 1;
+            }
+            //向右查询
+            if (value < array[midIndex]){
+                right = midIndex - 1;
+            }
+        }
+        return null;
     }
 
     /**
      * 插值查找执行
      * @param array 待查数组，数组必须有序
      * @param value 待查值
-     * @param left 数组左下标
-     * @param right 数组右下标
      * @return 待查值的下标集合
      */
-    private static List interpolationSearchExecute(int[] array, int value, int left, int right) {
+    public static List interpolationSearch(int[] array, int value) {
+        return interpolationSearch(array, value, 0, array.length - 1);
+    }
+    private static List interpolationSearch(int[] array, int value, int left, int right) {
         System.out.println("正在查找");
         if (value < array[0] || value > array[array.length - 1] || left > right) {
             return null;
@@ -102,11 +145,11 @@ public class Search {
         int mid = left + (right - left) * (value - array[left]) / (array[right] - array[left]);
         //待查值大于array[mid]时向右递归
         if (value > array[mid]) {
-            return binarySearchExecute(array, value, mid + 1, right);
+            return interpolationSearch(array, value, mid + 1, right);
         }
         //待查值小于array[mid]时向左递归
         if (value < array[mid]) {
-            return binarySearchExecute(array, value, left, mid - 1);
+            return interpolationSearch(array, value, left, mid - 1);
         }
         //待查值等于array[mid]时分别向mid的左右进行扫描，以找到等于array[mid]的值的下标
         ArrayList<Integer> resultIndex = new ArrayList<>();
@@ -127,17 +170,6 @@ public class Search {
             resultIndex.add(i);
         }
         return resultIndex;
-    }
-
-    /**
-     * 差值查找
-     *
-     * @param array 待查数组，数组必须有序
-     * @param value 待查值
-     * @return 待查值的下标集合
-     */
-    public static List interpolationSearch(int[] array, int value) {
-        return interpolationSearchExecute(array, value, 0, array.length - 1);
     }
 
     /**

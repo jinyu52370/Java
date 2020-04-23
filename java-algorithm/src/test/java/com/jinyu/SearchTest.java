@@ -14,7 +14,8 @@ public class SearchTest {
 
     @Test
     public void binarySearchTest(){
-        System.out.println(Search.binarySearch(new int[]{1, 8, 8, 8, 10, 89, 1000, 1234}, 8));
+//        System.out.println(Search.binarySearch(new int[]{1, 8, 8, 8, 10, 89, 1000, 1234}, 8));
+        System.out.println(Search.binarySearchFroIteration(new int[]{1, 8, 8, 8, 10, 89, 1000, 1234}, 8));
     }
 
     @Test
