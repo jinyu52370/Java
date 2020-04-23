@@ -2,6 +2,7 @@ package com.jinyu.graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,10 +20,6 @@ public class Graph {
         adjacencyMatrix = new int[vertexNum][vertexNum];
         vertexList = new ArrayList<>(vertexNum);
         edgesNum = 0;
-        isAccess = new boolean[vertexNum];
-        for (boolean b : isAccess){
-            b = false;
-        }
     }
     //endregion
 
@@ -58,7 +55,7 @@ public class Graph {
      * 得到顶点总数
      * @return 顶点总数
      */
-    public int getVertesNum(){
+    public int getVertexNum(){
         return vertexList.size();
     }
 
@@ -154,11 +151,60 @@ public class Graph {
      * DFS
      */
     public void depthFirstSearch(){
+        isAccess = new boolean[getVertexNum()];
         for (int i = 0; i < vertexList.size(); i++) {
             if (!isAccess[i]) {
                 depthFirstSearch(isAccess, i);
             }
         }
+        System.out.println();
+    }
+    //endregion
+
+    //region BFS
+    private void breadthFirstSearch(boolean[] isAccess, int index){
+        //队列头索引
+        int u;
+        //邻接顶点索引
+        int w;
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        //index已访问
+        System.out.print(getVertexByIndex(index));
+        if (index < isAccess.length - 1) {
+            System.out.print(" -> ");
+        }
+        isAccess[index] = true;
+        //index入队
+        linkedList.addLast(index);
+
+        while (!linkedList.isEmpty()){
+            u = linkedList.removeFirst();
+            w = getFirstNeighborWeight(u);
+            while (w != -1){
+                if (!isAccess[w]){
+                    //w已访问
+                    System.out.print(getVertexByIndex(w));
+                    if (w < isAccess.length - 1) {
+                        System.out.print(" -> ");
+                    }
+                    isAccess[w] = true;
+                    //w入队
+                    linkedList.addLast(w);
+                }
+                w = getNeighborNextNeighborWeight(u, w);
+            }
+        }
+
+    }
+
+    public void breadthFirstSearch(){
+        isAccess = new boolean[getVertexNum()];
+        for (int i = 0; i < vertexList.size(); i++) {
+            if (!isAccess[i]){
+                breadthFirstSearch(isAccess, i);
+            }
+        }
+        System.out.println();
     }
     //endregion
 }

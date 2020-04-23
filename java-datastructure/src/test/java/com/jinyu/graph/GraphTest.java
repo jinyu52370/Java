@@ -23,5 +23,6 @@ public class GraphTest {
         graph.printAdjacencyMatrix();
 
         graph.depthFirstSearch();
+        graph.breadthFirstSearch();
     }
 }
