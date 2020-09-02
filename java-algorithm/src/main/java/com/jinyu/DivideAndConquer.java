@@ -5,11 +5,8 @@ package com.jinyu;
  * @date 2020/4/23 12:29
  */
 public class DivideAndConquer {
-    public static void hanoiTower(int num, char a, char b, char c){
-        //只有一个盘
-        if (num == 1){
-            System.out.println("第1个盘\t" + a + " -> " + b);
-        } else {
+    public static void hanoiTower(int num, char a, char b, char c) {
+        if (num > 0) {
             /*
              * 若num>=2时，认为只有两个盘：
              *  最底层的盘

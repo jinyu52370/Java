@@ -111,11 +111,11 @@ public class RBTree<K extends Comparable<K>, V> {
      */
     private RBNode root;
 
-    public RBTree(K key, V value){
+    RBTree(K key, V value){
         this.root = new RBNode(key, value, BLACK);
     }
 
-    public RBTree(){
+    RBTree(){
     }
     //endregion
 
@@ -136,20 +136,18 @@ public class RBTree<K extends Comparable<K>, V> {
         if (newNode.left != null){
             newNode.left.parent = node;
         }
-
-        if (node.parent != null){
-            newNode.parent = node.parent;
-
-            if (node == node.parent.left){
-                node.parent.left = newNode;
-            } else {
-                node.parent.right = newNode;
-            }
-        } else {
+        if (node.parent == null){
             root = newNode;
             root.parent = null;
+        } else {
+            newNode.parent = node.parent;
+            if (node == node.parent.left){
+                node.parent.left = newNode;
+            }
+            if (node == node.parent.right){
+                node.parent.right = newNode;
+            }
         }
-
         node.parent = newNode;
         newNode.left = node;
     }
@@ -160,20 +158,18 @@ public class RBTree<K extends Comparable<K>, V> {
         if (newNode.right != null){
             newNode.right.parent = node;
         }
-
-        if (node.parent != null){
-            newNode.parent = node.parent;
-
-            if (node == node.parent.left){
-                node.parent.left = newNode;
-            } else {
-                node.parent.right = newNode;
-            }
-        } else {
+        if (node.parent == null){
             root = newNode;
             root.parent = null;
+        } else {
+            newNode.parent = node.parent;
+            if (node == node.parent.left){
+                node.parent.left = newNode;
+            }
+            if (node == node.parent.right){
+                node.parent.right = newNode;
+            }
         }
-
         node.parent = newNode;
         newNode.right = node;
     }

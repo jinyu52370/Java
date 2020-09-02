@@ -1,8 +1,8 @@
-# imagesimagesJVM
+# JVM
 
 ## JVM体系结构概述
 
-​		JVM位置：硬件系统 -> 操作系统 -> Java Virtual Machine
+​		JVM位置：硬件系统 -> 操作系  统 -> Java Virtual Machine
 
 <img src="https://gitee.com/jinyu52370/images/raw/master/images/JVM体系结构概览.png" alt="JVM体系结构概览" style="zoom:75%;" />
 

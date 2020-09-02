@@ -21,11 +21,14 @@ public class CodeTest {
         User user = new User();
 
         /*
+         * 一个类被加载后，整个类的结构都会被封装在class对象中
+         *
          * 创建Class实例的方法
          *  1. 通过 类名.class 创建指定类的实例
          *  2. 通过 对象.getClass() 获取对应是实例对象的类的实例
          *  3. （常用）已知一个类的全类名，且在该类的路径下，通过Class类的静态方法 forName() 获取，可能抛出ClassNotFoundException
          *  4. ClassLoader
+         *  5. 基本内置类型的包装类都有一个TYPE属性
          */
         try {
             Class clazz1 = User.class;
@@ -36,8 +39,20 @@ public class CodeTest {
 
             ClassLoader cl = this.getClass().getClassLoader();
             Class clazz4 = cl.loadClass("com.jjj.entity.ReflectUser");
+
+            Class clazz5 = Integer.TYPE;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取系统类加载器可以加载的路径
+     */
+    @Test
+    public void loadTest() {
+        for (String str : System.getProperty("java.class.path").split(";")) {
+            System.out.println(str);
         }
     }
 

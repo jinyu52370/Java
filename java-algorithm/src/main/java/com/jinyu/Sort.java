@@ -3,12 +3,42 @@ package com.jinyu;
 import com.jinyu.tree.HeapSort;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * @author <a href="jinyu52370@163.com">JJJ</a>
  * @date 2020/4/3 21:31
  */
 public class Sort {
+    private static int[] array;
+
+    //校验number是否在数组中
+    private static boolean isInArray(int number) {
+        boolean isInArray = false;
+        for (int a : array) {
+            if (a == number) {
+                isInArray = true;
+                break;
+            }
+        }
+        return isInArray;
+    }
+
+    //生成长度为length、值域为1 ~ maxElement的随机数组
+    public static int[] getRandomArray(int maxElement, int length) {
+        array = new int[length];
+        Random random = new Random();
+        int index = 0;
+        while (index < length) {
+            int randomNumber = random.nextInt(maxElement) + 1;           //random.nextInt()返回0 ~ maxElement之间的数
+            if (!isInArray(randomNumber)) {                               //但不包括maxElement
+                array[index] = randomNumber;
+                index++;
+            }
+        }
+        return array;
+    }
+
     /**
      * 冒泡排序
      */
@@ -138,9 +168,17 @@ public class Sort {
     }
 
     /**
+     * 快速排序
+     */
+    public static int[] quickSort(int[] array) {
+        quickSort(array, 0, array.length - 1);
+        return array;
+    }
+
+    /**
      * 快速排序执行方法
      */
-    private static void quickSortExecute(int[] array, int left, int right) {
+    private static void quickSort(int[] array, int left, int right) {
         int pivot = array[(left + right) / 2];
         int l = left, r = right;
         while (l < r) {
@@ -167,8 +205,8 @@ public class Sort {
              * 例：1 2 3 4 2 7 8 9 5
              * 第一轮：
              *  pivot = array[(0 + 8) / 2] = 2
-             *  l = 2
-             *  r = pivot = 2
+             *  array[l] = 2
+             *  array[r] = pivot = 2
              *
              *  若交换后不对r左移，则下一轮循环中l和r都不会移动，然后再次交换，以至无限
              */
@@ -187,20 +225,12 @@ public class Sort {
         }
         //向左递归
         if (left < r) {
-            quickSortExecute(array, left, r);
+            quickSort(array, left, r);
         }
         //向右递归
         if (right > l) {
-            quickSortExecute(array, l, right);
+            quickSort(array, l, right);
         }
-    }
-
-    /**
-     * 快速排序
-     */
-    public static int[] quickSort(int[] array) {
-        quickSortExecute(array, 0, array.length - 1);
-        return array;
     }
 
     /**
@@ -280,6 +310,43 @@ public class Sort {
         return array;
     }
 
+    public static int[] mergeSort1(int[] arr) {
+        mergeSort1(arr, new int[arr.length], 0, arr.length - 1);
+        return arr;
+    }
+
+    public static void mergeSort1(int[] arr, int[] temp, int left, int right) {
+        if (left == right) {
+            return;
+        }
+        int mid = left + ((right - left) >> 1);
+        mergeSort1(arr, temp, left, mid);
+        mergeSort1(arr, temp, mid + 1, right);
+        merge1(arr, temp, left, mid, right);
+    }
+
+    public static void merge1(int[] arr, int[] temp, int left, int mid, int right) {
+        int i = left;
+        int p1 = left;
+        int p2 = mid + 1;
+        // 比较左右两部分的元素，哪个小，把那个元素填入temp中
+        while (p1 <= mid && p2 <= right) {
+            temp[i++] = arr[p1] <= arr[p2] ? arr[p1++] : arr[p2++];
+        }
+        // 上面的循环退出后，把剩余的元素依次填入到temp中
+        // 以下两个while只有一个会执行
+        while (p1 <= mid) {
+            temp[i++] = arr[p1++];
+        }
+        while (p2 <= right) {
+            temp[i++] = arr[p2++];
+        }
+        // 把最终的排序的结果复制给原数组
+        for (i = left; i <= right; i++) {
+            arr[i] = temp[i];
+        }
+    }
+
     /**
      * 基数排序
      */
@@ -293,8 +360,8 @@ public class Sort {
 
         //找到array中最大的数
         int max = array[0];
-        for(int element : array){
-            if (element > max){
+        for (int element : array) {
+            if (element > max) {
                 max = element;
             }
         }

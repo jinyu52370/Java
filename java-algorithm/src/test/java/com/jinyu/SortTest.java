@@ -5,8 +5,6 @@ import org.junit.Test;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 /**
@@ -15,8 +13,8 @@ import java.util.stream.Collectors;
  */
 public class SortTest {
     @Test
-    public void data8WTest(){
-        int max = 8 * 10000;
+    public void data8WTest() {
+        int max = 8 * 1_000_000;
         int[] data = new int[max];
         for (int i = 0; i < max; i++) {
             data[i] = (int) (Math.random() * max);
@@ -40,9 +38,10 @@ public class SortTest {
         //0.079s
 //        Sort.radixSort(data);
         //0.02s
-        HeapSort.sort(data);
+//        HeapSort.sort(data);
+        Sort.mergeSort1(data);
 
-        System.out.println((new Timestamp(System.currentTimeMillis()).getTime() - t1.getTime())/1000.0 + "s");
+        System.out.println((new Timestamp(System.currentTimeMillis()).getTime() - t1.getTime()) / 1000.0 + "s");
 
     }
 
@@ -52,15 +51,16 @@ public class SortTest {
 //        List list = Arrays.stream(Sort.bubbleSort(new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1}))
 //                .boxed()
 //                .collect(Collectors.toList());
-        int[] array = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+        int[] array = Sort.getRandomArray(15, 7);
 //        System.out.println(Arrays.toString(Sort.bubbleSort(array)));
 //        System.out.println(Arrays.toString(Sort.selectionSort(array)));
 //        System.out.println(Arrays.toString(Sort.insertionSort(array)));
 //        System.out.println(Arrays.toString(Sort.shellSortSwap(array)));
 //        System.out.println(Arrays.toString(Sort.shellSortMove(array)));
-//        System.out.println(Arrays.toString(Sort.quickSort(new int[]{8, 5, 3, 6, 2, 1, 7, 4, 9})));
-//        System.out.println(Arrays.toString(Sort.mergeSort(array)));
-        System.out.println(Arrays.toString(Sort.radixSort(new int[]{53, 3, 542, 748, 14, 214})));
-
+//        System.out.println(Arrays.toString(Sort.quickSort(array)));
+//        System.out.println(Arrays.toString(Sort.quickSort(array)));
+//        System.out.println(Arrays.toString(Sort.mergeSort1(array)));
+//        System.out.println(Arrays.toString(Sort.radixSort(new int[]{53, 3, 542, 748, 14, 214})));
+        System.out.println(Arrays.toString(new HeapSort().heapSort(array)));
     }
 }

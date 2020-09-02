@@ -72,4 +72,55 @@ public class DynamicProgramming {
         }
 
     }
+
+    /**
+     * 有一个数组，1,2,4,1,7,8,3，相隔相加，选出最大的数
+     *
+     * 递推式：opt(i) = max(opt(i - 2) + arr[i], opt(i - 1));
+     *
+     * 递归出口：opt(0) = 1;
+     *         opt(1) = max(arr[0], arr[1]);
+     */
+    public static int maxNum(int[] array, int i) {
+        if (i == 0) {
+            return array[0];
+        }
+        if (i == 1) {
+            return Math.max(array[0], array[1]);
+        }
+        return Math.max(maxNum(array, i - 2) + array[i], maxNum(array, i - 1));
+    }
+
+    public static int dpMaxNum(int[] array, int i) {
+        int[] opt = new int[i + 1];
+        opt[0] = array[0];
+        opt[1] = Math.max(array[0], array[1]);
+
+        for (int j = 2; j <= i; j++) {
+            opt[j] = Math.max(opt[j - 2] + array[j], opt[j - 1]);
+        }
+        return opt[i];
+    }
+
+    /**
+     * 给一个数组和一个值，求数组中是否有任意个元素的和为该值
+     *
+     * 递推式:
+     */
+    public static boolean isHashSum(int[] arr, int n){
+        return subSet(arr,arr.length - 1, n);
+    }
+
+    private static boolean subSet(int[] arr, int index, int n) {
+        if (n == 0) {
+            return true;
+        }
+        if (index == 0) {
+            return arr[index] == n;
+        }
+        if (arr[index] > n) {
+            return subSet(arr, index - 1, n);
+        }
+        return subSet(arr, index - 1, n - arr[index]) || subSet(arr, index - 1, n);
+    }
 }

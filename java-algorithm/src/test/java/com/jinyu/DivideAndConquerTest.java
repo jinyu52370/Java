@@ -13,7 +13,7 @@ public class DivideAndConquerTest {
     @Test
     public void hanoiTowerTest(){
         Timestamp t1 = new Timestamp(System.currentTimeMillis());
-        DivideAndConquer.hanoiTower(10, 'a', 'b', 'c');
+        DivideAndConquer.hanoiTower(3, 'a', 'b', 'c');
         System.out.println((new Timestamp(System.currentTimeMillis()).getTime() - t1.getTime()) / 1000.0);
     }
 }

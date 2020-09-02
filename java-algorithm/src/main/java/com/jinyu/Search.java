@@ -24,10 +24,7 @@ public class Search {
                 resultIndex.add(i);
             }
         }
-        if (resultIndex.size() == 0){
-            return null;
-        }
-        return resultIndex;
+        return resultIndex.size() == 0 ? null : resultIndex;
     }
 
     /**
@@ -37,9 +34,10 @@ public class Search {
      * @param value 待查值
      * @return 待查值的下标集合
      */
-    public static List binarySearch(int[] array, int value){
+    public static List binarySearch(int[] array, int value) {
         return binarySearch(array, value, 0, array.length - 1);
     }
+
     private static List binarySearch(int[] array, int value, int left, int right) {
         System.out.println("正在查找");
         if (value < array[0] || value > array[array.length - 1] || left > right) {
@@ -58,8 +56,8 @@ public class Search {
         //待查值等于array[mid]时分别向mid的左右进行扫描，以找到等于array[mid]的值的下标
         ArrayList<Integer> resultIndex = new ArrayList<>();
         //向左扫
-        for (int i = mid - 1;; i--) {
-            if (i < 0 || array[i] != array[mid]){
+        for (int i = mid - 1; ; i--) {
+            if (i < 0 || array[i] != array[mid]) {
                 break;
             }
             resultIndex.add(i);
@@ -67,8 +65,8 @@ public class Search {
         //添加mid
         resultIndex.add(mid);
         //向右扫
-        for (int i = mid + 1;; i++) {
-            if (i > array.length - 1 || array[i] != array[mid]){
+        for (int i = mid + 1; ; i++) {
+            if (i > array.length - 1 || array[i] != array[mid]) {
                 break;
             }
             resultIndex.add(i);
@@ -83,7 +81,7 @@ public class Search {
      * @param value 待查值
      * @return 待查值的下标集合
      */
-    public static List<Integer> binarySearchFroIteration(int[] array, int value){
+    public static List<Integer> binarySearchFroIteration(int[] array, int value) {
         if (value < array[0] || value > array[array.length - 1]) {
             return null;
         }
@@ -91,15 +89,15 @@ public class Search {
         int right = array.length - 1;
         int midIndex;
 
-        while (left <= right){
+        while (left <= right) {
             midIndex = (left + right) / 2;
             System.out.println("正在查找");
             //找到
-            if (value == array[midIndex]){
+            if (value == array[midIndex]) {
                 ArrayList<Integer> resultList = new ArrayList<>();
                 //向左查询是否还有与array[midIndex]相等的元素
                 for (int i = midIndex - 1; i >= 0; i--) {
-                    if (array[i] != value){
+                    if (array[i] != value) {
                         break;
                     }
                     resultList.add(i);
@@ -108,7 +106,7 @@ public class Search {
                 resultList.add(midIndex);
                 //向右查询是否还有与array[midIndex]相等的元素
                 for (int i = midIndex + 1; i < array.length; i++) {
-                    if (array[i] != value){
+                    if (array[i] != value) {
                         break;
                     }
                     resultList.add(i);
@@ -116,11 +114,12 @@ public class Search {
                 return resultList;
             }
             //向左查询
-            if (value > array[midIndex]){
+            if (value > array[midIndex]) {
                 left = midIndex + 1;
+                continue;
             }
             //向右查询
-            if (value < array[midIndex]){
+            if (value < array[midIndex]) {
                 right = midIndex - 1;
             }
         }
@@ -129,6 +128,7 @@ public class Search {
 
     /**
      * 插值查找执行
+     *
      * @param array 待查数组，数组必须有序
      * @param value 待查值
      * @return 待查值的下标集合
@@ -136,6 +136,7 @@ public class Search {
     public static List interpolationSearch(int[] array, int value) {
         return interpolationSearch(array, value, 0, array.length - 1);
     }
+
     private static List interpolationSearch(int[] array, int value, int left, int right) {
         System.out.println("正在查找");
         if (value < array[0] || value > array[array.length - 1] || left > right) {
@@ -154,8 +155,8 @@ public class Search {
         //待查值等于array[mid]时分别向mid的左右进行扫描，以找到等于array[mid]的值的下标
         ArrayList<Integer> resultIndex = new ArrayList<>();
         //向左扫
-        for (int i = mid - 1;; i--) {
-            if (i < 0 || array[i] != array[mid]){
+        for (int i = mid - 1; ; i--) {
+            if (i < 0 || array[i] != array[mid]) {
                 break;
             }
             resultIndex.add(i);
@@ -163,8 +164,8 @@ public class Search {
         //添加mid
         resultIndex.add(mid);
         //向右扫
-        for (int i = mid + 1;; i++) {
-            if (i > array.length - 1 || array[i] != array[mid]){
+        for (int i = mid + 1; ; i++) {
+            if (i > array.length - 1 || array[i] != array[mid]) {
                 break;
             }
             resultIndex.add(i);
@@ -174,12 +175,13 @@ public class Search {
 
     /**
      * 斐波那契查找
+     *
      * @param array 待查数组，数组必须有序
      * @param value 待查值
      * @return 待查值的下标集合
      */
-    public static List fibonacciSearch(int[] array, int value){
-        if (value < array[0] || value > array[array.length - 1]){
+    public static List fibonacciSearch(int[] array, int value) {
+        if (value < array[0] || value > array[array.length - 1]) {
             return null;
         }
 
@@ -196,7 +198,7 @@ public class Search {
         }
 
         //将array扩充到斐波那契的长度
-        while (right > fib[k] - 1){
+        while (right > fib[k] - 1) {
             k++;
         }
         int[] temp = Arrays.copyOf(array, fib[k]);
@@ -206,22 +208,22 @@ public class Search {
 
         //找value
         int mid;
-        while (left <= right){
+        while (left <= right) {
             mid = left + fib[k - 1] - 1;
-            if (value < temp[mid]){
+            if (value < temp[mid]) {
                 right = mid - 1;
                 //fib[k] = (左)fib[k - 1] + (右)fib[k - 2]
                 //fib[k - 1]
                 k--;
                 continue;
             }
-            if (value > temp[mid]){
+            if (value > temp[mid]) {
                 left = mid + 1;
                 //fib[k - 2]
                 k -= 2;
                 continue;
             }
-            if (value == temp[mid]){
+            if (value == temp[mid]) {
                 if (mid <= right) {
                     resultIndex.add(mid);
                 } else {
